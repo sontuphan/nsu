@@ -6,10 +6,11 @@ let two = new BN(2);
 let N2 = N.pow(two);
 let MODULI = N2.add(new BN(8 * 2019));
 
-let ORDER = new BN(1985);
-while (H.pow(ORDER).mod(MODULI).cmp(H) != 0) {
-  console.log(ORDER.toString());
-  ORDER = ORDER.add(new BN(1));
+for (let i = 1; i < 100000000; i++) {
+  let x = new BN(i);
+  x = x.mul(new BN(2)).add(new BN(1));
+  console.log(x.toString());
+  if (MODULI.mod(x).eq(new BN(0))) return console.log(i);
 }
 
-console.log(ORDER.toString())
+console.log('Done!')
