@@ -2,7 +2,6 @@ const { cut, uncut, paddingZero, decToTri } = require('./utils');
 const { curl27f } = require('./curl27f');
 
 const HASH_LENGTH = 243;
-const STATE_LENGTH = HASH_LENGTH * 3;
 
 
 let W = (w, x) => {
@@ -25,7 +24,6 @@ let curl27 = (arr, all) => {
   let w = W(arr);
   let _arr = paddingZero(arr, HASH_LENGTH);
   let x = cut(_arr, HASH_LENGTH);
-  console.log(x)
   for (let i = 0; i < x.length; i++) {
     w = W(w, x[i]);
     w = cut(curl27f(uncut(w, HASH_LENGTH)), HASH_LENGTH);

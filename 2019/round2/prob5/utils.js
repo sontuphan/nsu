@@ -62,4 +62,44 @@ let triToDec = tri => {
   return re.toString();
 }
 
-module.exports = { cut, uncut, mod, shiftLeft, paddingZero, decToTri, triToDec }
+let multipleADD = (arrA, arrB) => {
+  if (arrA.length != arrB.length) throw new Error('Cannot not XOR different lengths!');
+  let re = [];
+  for (let i = 0; i < arrA.length; i++) {
+    re[i] = arrA[i] + arrB[i];
+  }
+  return re;
+}
+
+let singleDiff = (a, b) => {
+  if (a != b) return 1;
+  return 0;
+}
+
+let multipleDiff = (arrA, arrB) => {
+  if (arrA.length != arrB.length) throw new Error('Cannot not XOR different lengths!');
+  let re = [];
+  for (let i = 0; i < arrA.length; i++) {
+    re[i] = singleDiff(arrA[i], arrB[i]);
+  }
+  return re;
+}
+
+let singleXOR = (a, b) => {
+  return mod(a + b);
+}
+
+let multipleXOR = (arrA, arrB) => {
+  if (arrA.length != arrB.length) throw new Error('Cannot not XOR different lengths!');
+  let re = [];
+  for (let i = 0; i < arrA.length; i++) {
+    re[i] = singleXOR(arrA[i], arrB[i]);
+  }
+  return re;
+}
+
+module.exports = {
+  cut, uncut, mod,
+  shiftLeft, paddingZero, decToTri, triToDec,
+  multipleADD, multipleDiff, multipleXOR
+}
